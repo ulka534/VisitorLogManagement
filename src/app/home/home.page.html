@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Visitor Entry
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row align-items-center style="height: 98vh;">
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <form #visitorData="ngForm" (ngSubmit)="visitorEntry(visitorData)">
+
+              <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <ion-icon name="person" size="large"></ion-icon>
+                    <p>Name</p>
+                  </ion-label>
+                  <ion-input type="text" [ngClass]="{invalid:!valid}" name="name" required #name="ngModel"
+                    [(ngModel)]="visitorObj.name"></ion-input>
+                </ion-item>
+              </ion-list>
+              <p padding-left padding-top class="errorMsg" *ngIf="!name.value && name.touched || !name.value && !valid">
+                <ion-icon md="md-information-circle" color="danger"></ion-icon>
+                Please Enter Name.
+              </p>
+
+              <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <ion-icon name="mail" size="large"></ion-icon>
+                    <p>Mail</p>
+                  </ion-label>
+                  <ion-input type="email" [ngClass]="{invalid:!valid}" name="email" required #email="ngModel"
+                    [(ngModel)]="visitorObj.email"></ion-input>
+                </ion-item>
+              </ion-list>
+              <p padding-left padding-top class="errorMsg"
+                *ngIf="!email.value && email.touched || !email.value && !valid">
+                <ion-icon md="md-information-circle" color="danger"></ion-icon>
+                Please Enter Email.
+              </p>
+
+              <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <ion-icon name="pricetag" size="large"></ion-icon>
+                    <p>Type Of Visit</p>
+                  </ion-label>
+                  <ion-select placeholder="Select One" name="typeOfVisit" [(ngModel)]="visitorObj.typeOfVisit">
+                    <ion-select-option value="Meeting">Meeting</ion-select-option>
+                    <ion-select-option value="Delivery">Delivery</ion-select-option>
+                    <ion-select-option value="Personal">Personal</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-list>
+
+              <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <ion-icon name="man" size="large"></ion-icon>
+                    <p>Person To Visit</p>
+                  </ion-label>
+                  <ion-input type="text" [ngClass]="{invalid:!valid}" name="personToVisit" required
+                    #personToVisit="ngModel" [(ngModel)]="visitorObj.personToVisit">
+                  </ion-input>
+                </ion-item>
+              </ion-list>
+              <p padding-left padding-top class="errorMsg"
+                *ngIf="!personToVisit.value && personToVisit.touched || !personToVisit.value && !valid">
+                <ion-icon md="md-information-circle" color="danger"></ion-icon>
+                Please Enter Person To Visit.
+              </p>
+
+              <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <ion-icon name="calendar" size="large"></ion-icon>
+                    <p>Date Of Entry</p>
+                  </ion-label>
+                  <ion-input type="text" (click)="showDatepicker()" (ionFocus)="showDatepicker()" name="dateOfEntry"
+                    readonly [(ngModel)]="visitorObj.dateOfEntry" disabled></ion-input>
+                </ion-item>
+              </ion-list>
+
+              <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <ion-icon name="information-circle-outline" size="large"></ion-icon>
+                    <p>Time Of Entry</p>
+                  </ion-label>
+                  <ion-input type="text" (click)="showEntryTimepicker()" (ionFocus)="showEntryTimepicker()"
+                    name="timeOfEntry" readonly [(ngModel)]="visitorObj.timeOfEntry"></ion-input>
+                </ion-item>
+              </ion-list>
+
+              <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <ion-icon name="exit" size="large"></ion-icon>
+                    <p>Time Of Exit</p>
+                  </ion-label>
+                  <ion-input type="text" (click)="showExitTimepicker()" (ionFocus)="showExitTimepicker()"
+                    name="timeOfExit" readonly [(ngModel)]="visitorObj.timeOfExit"></ion-input>
+                </ion-item>
+              </ion-list>
+
+              <div padding>
+                <button ion-button color="secondary" class="btnStyle">Submit</button>
+              </div>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

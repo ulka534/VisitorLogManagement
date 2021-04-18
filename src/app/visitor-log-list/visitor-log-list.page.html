@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Visitor Logs
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid>
+    <ion-scroll scrollY="true" class="scrolldiv" no-padding>
+      <ion-card *ngFor="let item of visitorLogList">
+        <ion-row align-items-center>
+          <ion-col size="6" text-left>Name: {{ item.name }}</ion-col>
+          <ion-col size="6" text-right>Mail: {{ item.email }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3" text-left>Type Of Visit: {{ item.typeOfVisit }}</ion-col>
+          <ion-col size="3" text-right>Person To Visit: {{ item.personToVisit }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4" text-left>Date of Entry: {{ item.dateOfEntry }}</ion-col>
+          <ion-col size="4" text-center>Time Of Entry: {{ item.timeOfEntry }}</ion-col>
+          <ion-col size="4" text-right>Time Of Exit: {{ item.timeOfExit }}</ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-scroll>
+  </ion-grid>
+  <ion-item *ngIf="visitorLogList.length == 0">
+    No visitor logs
+  </ion-item>
+
+</ion-content>
